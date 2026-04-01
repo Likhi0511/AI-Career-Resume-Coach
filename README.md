@@ -19,6 +19,38 @@ It combines **RAG + LLM + Memory** to deliver contextual and conversational resp
 
 ---
 
+## Architecture Diagram
+                ┌────────────────────┐
+                │   Streamlit UI     │
+                │  (User Interface)  │
+                └─────────┬──────────┘
+                          │
+                          ▼
+                ┌────────────────────┐
+                │   FastAPI Backend  │
+                │   (API Layer)      │
+                └─────────┬──────────┘
+                          │
+          ┌───────────────┼────────────────┐
+          ▼                                ▼
+┌────────────────────┐         ┌────────────────────┐
+│   RAG Pipeline     │         │   Chat Memory      │
+│   (LangChain)      │         │   (PostgreSQL)     │
+└─────────┬──────────┘         └────────────────────┘
+          │
+          ▼
+┌────────────────────┐
+│   Vector Database  │
+│   (Pinecone)       │
+└─────────┬──────────┘
+          │
+          ▼
+┌────────────────────┐
+│      OpenAI LLM    │
+│ (GPT-4o / mini)    │
+└────────────────────┘
+This architecture enables a hybrid AI system combining Retrieval-Augmented Generation (RAG) with conversational memory.
+
 ## 🧠 Key Features
 
 - 📄 Resume Analysis using RAG
